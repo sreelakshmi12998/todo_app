@@ -1,55 +1,51 @@
-import React, { Component } from 'react'
+import React, { useState } from "react";
 import "./TodoApp.css";
+import { FaTrash } from "react-icons/fa";
 
-export class TodoApp extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             input : "",
-             items : []
-        }
-    }
-    
-    handleChange =(event)=>{
-this.setState({
-    input : event.target.value
-})
+function TodoApp() {
+  const [items, setItems] = useState([]);
+  const [input, setInput] = useState("");
 
-    };
-    storeItems=(event)=>{
-        event.preventDefault();
-      const{input}= this.state;
-         this.setState({
-             items : [...this.state.items, input]
-         });
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+  const storeItems = (event) => {
+    event.preventDefault();
+    if (input !== "") {
+      setItems([...items, input]);
+      setInput("");
     }
-    deleteItems = (key)=>{
-        this.setState({
-            items : this.state.items.filter((data,index)=>index !==key)
-        });
-    }
-    render() {
-        const {input,items}= this.state;
-        console.log(items)
-        return (
-            <div className="container">
-            
-            <form className="input-section" onSubmit={this.storeItems}>
-            <h1> Todolist Application</h1>
-                <input type ="text" value={input} onChange={this.handleChange} placeholder="Enter item" />
-              
-               
-            </form>
-            <ul>
-              {items.map((data,index)=>(
-               <li  key={index}> <input type = "checkbox" /> {data} <i className="fas fa-trash-alt" onClick={()=>this.deleteItems(index)}></i></li>
-              ))}
-            </ul>
-        
-            </div>
-        )
-    }
+  };
+  const deleteItems = (key) => {
+    setItems(items.filter((data, index) => index !== key));
+  };
+
+  return (
+    <div className="container">
+      <form className="input-section" onSubmit={storeItems}>
+        <h1> Todolist Application</h1>
+        <input
+          type="text"
+          value={input}
+          onChange={handleChange}
+          placeholder="Enter item"
+        />
+      </form>
+
+      <ul>
+        {items.map((data, index) => (
+          <li key={index}>
+            <input type="checkbox" />{" "}
+            <span className="data-section">{data}</span>
+            <FaTrash
+              className="trash-icon"
+              onClick={() => deleteItems(index)}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default TodoApp
+export default TodoApp;

@@ -1,11 +1,11 @@
-import React from 'react';
-import TodoApp from './Components/TodoApp/TodoApp';
-
+import React from "react";
+import TodoApp from "./Components/TodoApp/TodoApp";
 
 function App() {
   return (
     <div className="App">
-     <TodoApp />
+      {/*<TodoApp />*/}
+      <TodoApp />
     </div>
   );
 }
