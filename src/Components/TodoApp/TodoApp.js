@@ -16,8 +16,8 @@ function TodoApp() {
       setInput("");
     }
   };
-  const deleteItems = (key) => {
-    setItems(items.filter((data, index) => index !== key));
+  const deleteTodo = (todoToBeDeleted) => {
+    setItems(items.filter((data, index) => index !== todoToBedeleted));
   };
 
   return (
@@ -39,7 +39,7 @@ function TodoApp() {
             <span className="data-section">{data}</span>
             <FaTrash
               className="trash-icon"
-              onClick={() => deleteItems(index)}
+              onClick={() => deleteTodo(index)}
             />
           </li>
         ))}
