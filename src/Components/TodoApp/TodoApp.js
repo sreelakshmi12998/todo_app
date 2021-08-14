@@ -24,7 +24,11 @@ function TodoApp() {
     }
   };
   const deleteTodo = (todoToBeDeleted) => {
+<<<<<<< HEAD
     setItems(items.filter((data, index) => index !== todoToBeDeleted));
+=======
+    setItems(items.filter((data, index) => index !== todoToBedeleted));
+>>>>>>> f82493d822a7127e43c84a4b09939a50fedcabbb
   };
 
   return (
@@ -42,6 +46,7 @@ function TodoApp() {
       <ul>
         {items.map((data, index) => (
           <li key={index}>
+<<<<<<< HEAD
             <div class="wrap">
               <div class="blocks">
                 <input
@@ -66,6 +71,14 @@ function TodoApp() {
                 </button>
               </div>
             </div>
+=======
+            <input type="checkbox" />{" "}
+            <span className="data-section">{data}</span>
+            <FaTrash
+              className="trash-icon"
+              onClick={() => deleteTodo(index)}
+            />
+>>>>>>> f82493d822a7127e43c84a4b09939a50fedcabbb
           </li>
         ))}
       </ul>
