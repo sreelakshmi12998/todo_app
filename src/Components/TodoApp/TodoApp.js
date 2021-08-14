@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./TodoApp.css";
-import { FaTrash } from "react-icons/fa";
+import { FaClosedCaptioning, FaTrash } from "react-icons/fa";
 
 function TodoApp() {
   const [items, setItems] = useState([]);
@@ -9,15 +9,22 @@ function TodoApp() {
   const handleChange = (event) => {
     setInput(event.target.value);
   };
+
+  const changeStatus = (isChecked, index) => {
+    const newItems = [...items];
+    newItems[index].isDone = isChecked;
+    setItems(newItems);
+  };
+
   const storeItems = (event) => {
     event.preventDefault();
-    if (input !== "") {
-      setItems([...items, input]);
+    if (input) {
+      setItems([...items, { text: input, isDone: false }]);
       setInput("");
     }
   };
   const deleteTodo = (todoToBeDeleted) => {
-    setItems(items.filter((data, index) => index !== todoToBedeleted));
+    setItems(items.filter((data, index) => index !== todoToBeDeleted));
   };
 
   return (
@@ -35,12 +42,30 @@ function TodoApp() {
       <ul>
         {items.map((data, index) => (
           <li key={index}>
-            <input type="checkbox" />{" "}
-            <span className="data-section">{data}</span>
-            <FaTrash
-              className="trash-icon"
-              onClick={() => deleteTodo(index)}
-            />
+            <div class="wrap">
+              <div class="blocks">
+                <input
+                  onChange={(e) => {
+                    changeStatus(e.target.checked, index);
+                  }}
+                  type="checkbox"
+                />
+                <span className="data-section">{data.text}</span>
+
+                <FaTrash
+                  className="trash-icon"
+                  onClick={() => deleteTodo(index)}
+                />
+              </div>
+              <div
+                class="completed-blocks"
+                style={{ display: data.isDone ? "block" : "none" }}
+              >
+                <button key={index} className="completed">
+                  Completed
+                </button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
