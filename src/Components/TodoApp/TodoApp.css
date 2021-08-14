@@ -5,7 +5,7 @@ body {
   background-color: cadetblue;
 }
 .container {
-  width: 370px;
+  width: 450px;
 
   position: sticky;
   margin: auto;
@@ -51,4 +51,24 @@ ul li {
   cursor: pointer;
   position: absolute;
   right: 6px;
+  height: 1.2em;
+  align-items: flex-end;
+}
+.completed {
+  box-shadow: 10px;
+  border-radius: 5px;
+  padding-top: 0;
+  background-color: rgb(133, 161, 133);
+}
+.wrap {
+  width: 100%;
+}
+.blocks {
+  display: flex;
+  width: 100%;
+}
+.completed-blocks {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
